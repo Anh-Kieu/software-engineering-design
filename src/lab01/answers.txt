@@ -160,3 +160,35 @@ of the variable is actually 1, then since it is typed double, it converts the va
 to double type.
 
 (7.5) Answer = 1.579
+
+(8.1) C++ could be said as the direct predecessor to Java. Their ancestor is C.
+
+(8.2) JVM is a virtual machine that helps execute bytecode (output of a Java compiler).
+Basically an interpreter for bytecode. JVM provides more security as it manages
+program execution, making it possible for the JVM to create a restricted execution
+environment. It blocks all the unwanted access to the machine.
+
+(8.3) Bytecode is the output of a Java compiler. It is a highly optimized set of
+ instructions that can only be executed by JVM.
+
+(8.4) SE is Standard Edition
+
+(8.5) JDK is Java Development Kit
+
+(8.6) main is the method that Java program begins execution with.
+
+(8.7) args receives command-line arguments when the program is executed
+
+(8.8) void indicates no return value for this method. In a method declaration,
+we always have to indicate the type of the return value.
+
+(8.9) identifier is the name of the method, can be used to called somewhere else
+along the program
+
+(8.10) keywords in Java are the reserved words used by Java system. In other words,
+keywords already have their functions, thus cannot be used to name variables.
+
+(8.11) literal is a representation of a constant value.
+
+(8.12) a block of code is a group of two or more statements between opening and
+closing curly braces.
