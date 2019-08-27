@@ -147,3 +147,16 @@ java lab01.MyProgram
 (5.8) in represents standard input stream. Its type is InputStream
 
 (5.9) System.getProperties(os.name)
+
+(7.1) ns ==> 1050533973369857
+
+(7.2) ms ==> 1050533973
+
+(7.3) Since java is statically-typed, the result of two integer typed variables
+should also be an integer, which is 1 instead of 1.5.
+
+(7.4) Since Java operates the x/y first, which results in an integer 1, the value
+of the variable is actually 1, then since it is typed double, it converts the value
+to double type.
+
+(7.5) Answer = 1.579

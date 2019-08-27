@@ -21,7 +21,7 @@ public class Hello
     double startTime = System.nanoTime();
     System.out.println("Programming is not a spectator sport!");
     double elapsedNanos = (System.nanoTime() - startTime)/1000000;
-    System.out.println("Time to execute : " + String.format("%.4f", elapsedNanos) + " ms");
+    System.out.printf("Time to execute : %.4f ms\n", elapsedNanos);
     System.exit(0);
   }
 }
