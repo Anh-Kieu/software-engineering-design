@@ -113,3 +113,31 @@ my local repository.
 (2.8) Git branches represents a diverge version from the main line of the deve-
 lopment. Basically another version of the work I am doing, and I can modify that
 without messing up my main, working code.
+
+(5.1) Bytecodes are the machine language of JVM. They are generated through a
+complier into a class files.
+
+(5.2) JVM makes Java independent of the Operating System as the code is compiled
+by the JVM not the OS itself. Basically the output will be the same throughout
+different OS.
+
+(5.3) Since the code has to be compiled by JVM first, it could be slower than
+actually having the code running by the OS.
+
+(5.4) It is generally true what they said about Java, but compared with Python,
+its user-friendliness, readability or platform independent feature are repeated
+and honestly Python has better readable syntax (in my opinion, not a fan of curly
+bracket and ; even though indent sucks).
+
+(5.5) Types of comment:
+// this is for single line comment
+/* ignore everything inside these symbols */
+/** for documentation */
+
+(5.6) Assume we are in the directory that contains MyProgram.java
+javac MyProgram.java
+java MyProgram
+
+If packaged, supposed named lab01:
+javac lab01/MyProgram.java
+java lab01.MyProgram
