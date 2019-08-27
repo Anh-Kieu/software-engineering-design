@@ -18,7 +18,10 @@ package lab01;
 public class Hello
 {
   public static void main( String[] args ) {
+    double startTime = System.nanoTime();
     System.out.println("Programming is not a spectator sport!");
+    double elapsedNanos = (System.nanoTime() - startTime)/1000000;
+    System.out.println("Time to execute : " + String.format("%.4f", elapsedNanos) + " ms");
     System.exit(0);
   }
 }

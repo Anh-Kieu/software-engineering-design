@@ -141,3 +141,9 @@ java MyProgram
 If packaged, supposed named lab01:
 javac lab01/MyProgram.java
 java lab01.MyProgram
+
+(5.7) println(String x) prints a String and then terminate the line.
+
+(5.8) in represents standard input stream. Its type is InputStream
+
+(5.9) System.getProperties(os.name)
