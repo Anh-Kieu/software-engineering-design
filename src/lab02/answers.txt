@@ -1,0 +1,65 @@
+/* *****************************************
+* CSCI205 - Software Engineering and Design
+* Fall 2019
+* Instructor: Prof. King
+* Section: 9 am
+*
+* Name: Anh Kieu
+* Date: 08/28/2019
+*
+* Lab / Assignment: lab02
+*
+* Description: Basic Java
+*
+* *****************************************/
+
+(1.1) Primitive type in a programming language represents single values instead of objects,
+which saves the language running time as it does not have to create different objects that
+have the value, instead, just having that value straight up.
+
+(1.2) Primitive types:
+- byte
+- short
+- int
+- long
+- float
+- double
+- char
+- boolean
+
+(1.3) They are all ways to represent integer literal. The different is their size, thus
+their range of value.
+
+(1.4) 300. 0x12C is the hexadecimal value for 300.
+
+(1.5) Output: x = 300 (12C hex)
+%d is the specifier for integer in Java formatting while %X is the specifier for hexadecimal formatting
+
+(1.6) incompatible types: possible lossy conversion from int to byte
+It is an error because 300 is out of byte's value range, causing a "lossy conversion"
+
+(1.7) System.out.format("y = %d (%X hex) \n", y, y) -----> y = 44 (2C hex). Value of y
+is 44 as byte variable only has maximum 8 bit to represent number, thus, 300 (12C) in binary is truncated
+to just 2C (remove first 4 bit, aka 1 left most in hexadecimal)
+
+(1.8) It shows an error as %d is not the specifier for character type.
+
+(1.9) x = 110 (6E hex)
+This number is the ascii code for 'n'
+
+(1.10) float and double variable both can be used for floating point number. The difference
+is their ranges, specifically double has longer range.
+
+(1.11) It returns false. The == checks equality.
+
+(1.12) It returns true because y has been changed into int, therefore, the decimal part is truncated.
+
+(1.13) true/false
+
+(1.14) No. "" only represents string literal.
+
+(1.15) String is not a primitive type in java. String is an object instead.
+
+(1.16) scope of a variable is the span/space/code block where the variable exists and is not terminated.
+A code block is the group of one or multiple lines of code. Code block is created between the opening and closing
+curly brackets.
