@@ -1,8 +1,8 @@
 /* *****************************************
  * CSCI205 - Software Engineering and Design
  * Fall 2019
- * Instructor: Your instructor
- * Section: List time of your lecture
+ * Instructor: Prof. King
+ * Section: 9am
  *
  * Name: Anh Kieu
  * Date: 08/29/2019
