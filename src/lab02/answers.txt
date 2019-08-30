@@ -63,3 +63,16 @@ is their ranges, specifically double has longer range.
 (1.16) scope of a variable is the span/space/code block where the variable exists and is not terminated.
 A code block is the group of one or multiple lines of code. Code block is created between the opening and closing
 curly brackets.
+
+(2.1)
+Primitive:
+ Answer = 49999995000000. Time = 5212897 ns
+Wrapped:
+ Answer = 49999995000000. Time = 52987471 ns
+Primitive types used 9.8% of the time of the wrapper objects
+
+(2.2)
+There exists such a timing different because primitive type is just straight up value, while
+wrapper class is actually an object, and when encountered situation where it has to return the
+primitive type, Java compiler actually takes more time unboxing the wrapper class to the
+corresponding primitive type.
