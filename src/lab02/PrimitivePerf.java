@@ -4,8 +4,8 @@
  * Instructor: Your instructor
  * Section: List time of your lecture
  *
- * Name: Your Name
- * Date: xx/xx/2019
+ * Name: Anh Kieu
+ * Date: 08/29/2019
  *
  * Lab / Assignment: lab02
  *
