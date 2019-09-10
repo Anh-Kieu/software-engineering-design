@@ -29,6 +29,9 @@ import java.util.Scanner;
  * @author Anh Kieu - aqk001
  */
 public class HelloMain {
+
+    public static final int NUM_INTS = 10;
+
     /**
      * Main method for the program
      *
@@ -44,8 +47,8 @@ public class HelloMain {
 
         // Test debug
         Random rand = new Random();
-        int[] x = new int[10];
-        for (int i = 0 ; i < 10 ; i++) {
+        int[] x = new int[NUM_INTS];
+        for (int i = 0; i < NUM_INTS; i++) {
             x[i] = rand.nextInt(100);
         }
         System.out.println(Arrays.toString(x));
