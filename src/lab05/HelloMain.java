@@ -19,6 +19,8 @@
 
 package lab05;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -39,5 +41,13 @@ public class HelloMain {
         System.out.println("A Personal Message for " + name);
         System.out.println("For beautiful eyes, look for the good in others; for beautiful lips, speak only words of kindness; and for poise, walk with the knowledge that you are never alone.");
         System.out.println("-- Audrey Hepburn");
+
+        // Test debug
+        Random rand = new Random();
+        int[] x = new int[10];
+        for (int i = 0 ; i < 10 ; i++) {
+            x[i] = rand.nextInt(100);
+        }
+        System.out.println(Arrays.toString(x));
     }
 }
