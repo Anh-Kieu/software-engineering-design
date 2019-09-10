@@ -38,19 +38,31 @@ public class HelloMain {
      * @param args Command line arguments that are unused in this program
      */
     public static void main(String[] args) {
-        System.out.print("Hello. What is your name? ");
-        Scanner in = new Scanner(System.in);
-        String name = in.next();
-        System.out.println("A Personal Message for " + name);
-        System.out.println("For beautiful eyes, look for the good in others; for beautiful lips, speak only words of kindness; and for poise, walk with the knowledge that you are never alone.");
-        System.out.println("-- Audrey Hepburn");
+        // Greet user
+        greetUser();
 
+        // Generate an array of random numbers
+        int[] x = getArrayOfRandomNums();
+
+        System.out.println(Arrays.toString(x));
+    }
+
+    private static int[] getArrayOfRandomNums() {
         // Test debug
         Random rand = new Random();
         int[] x = new int[NUM_INTS];
         for (int i = 0; i < NUM_INTS; i++) {
             x[i] = rand.nextInt(100);
         }
-        System.out.println(Arrays.toString(x));
+        return x;
+    }
+
+    private static void greetUser() {
+        System.out.print("Hello. What is your name? ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("A Personal Message for " + name);
+        System.out.println("For beautiful eyes, look for the good in others; for beautiful lips, speak only words of kindness; and for poise, walk with the knowledge that you are never alone.");
+        System.out.println("-- Audrey Hepburn");
     }
 }
