@@ -19,6 +19,10 @@
 
 package lab06;
 
+import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+
 public class CashRegister {
 
     /** amount of cash in drawer */
@@ -33,6 +37,12 @@ public class CashRegister {
     /** the amount customer has paid */
     private double amountPaid;
 
+    /** list of transactions */
+    private ArrayList<Transaction> transList;
+
+    /** statistic store */
+    private DoubleSummaryStatistics dss;
+
     /**
      * Initialize a default, empty cash register
      */
@@ -41,6 +51,8 @@ public class CashRegister {
         this.currentTransaction = null;
         this.amountPaid = 0;
         this.sName = "Default";
+        this.transList = new ArrayList<>();
+        this.dss = new DoubleSummaryStatistics();
     }
 
     /**
@@ -118,6 +130,9 @@ public class CashRegister {
      */
     public boolean finishTransaction() {
         if (this.isInTransaction() && this.getAmountOwed() <= 0) {
+            // add transaction into the list of transaction
+            transList.add(currentTransaction);
+            dss.accept(currentTransaction.getTotalCost());
             currentTransaction = null;
             amountPaid = 0;
             return true;
@@ -140,6 +155,7 @@ public class CashRegister {
      */
     public double finishShift() {
         if (this.isInTransaction()) return -1;
+        printEndOfShiftReport();
         // empty the drawer
         double cash = cashInDrawer;
         cashInDrawer = 0;
@@ -181,6 +197,78 @@ public class CashRegister {
         return "CashRegister{sName=\'" + sName + "\', cashInDrawer =" + cashInDrawer + ", currentTransaction=" + currentTransaction + ", amountPaid=" + amountPaid +"}";
     }
 
+    /**
+     * Get the list of transactions
+     *
+     * @return list of transactions
+     */
+    public List<Transaction> getTransList() {
+        return transList;
+    }
 
+    /**
+     * Get number of transactions
+     *
+     * @return number of transactions
+     */
+    public long getNumTrans() {
+        return this.dss.getCount();
+    }
+
+    /**
+     * Get total cost of every transactions
+     * @return total cost
+     */
+    public double getTotalCost() {
+        return this.dss.getSum();
+    }
+
+    /**
+     * Get the lowest cost transaction
+     *
+     * @return lowest cost
+     */
+    public double getMinCost() {
+        return this.dss.getMin();
+    }
+
+    /**
+     * Get the highest cost transaction
+     *
+     * @return highest cost
+     */
+    public double getMaxCost() {
+        return this.dss.getMax();
+    }
+
+    /**
+     * Get the average cost transaction
+     *
+     * @return average cost
+     */
+    public double getAveCost() {
+        return this.dss.getAverage();
+    }
+
+    /**
+     * Print report at end shift
+     */
+    public void printEndOfShiftReport() {
+        System.out.println("END-OF-SHIFT REPORT");
+        System.out.println(("------------------"));
+        System.out.println("CASH IN REGISTER: " + cashInDrawer);
+        System.out.println("TRANSACTIONS:");
+        int i = 1;
+        for (Transaction trans : transList) {
+            System.out.println("\t" + i + ": " + trans.toString());
+            i++;
+        }
+        System.out.println("SUMMARY:");
+        System.out.println("Min transaction: " + getMinCost());
+        System.out.println("Max transaction: " + getMaxCost());
+        System.out.println("Average transaction: " + getAveCost());
+        System.out.println("TOTAL: " + getTotalCost());
+        System.out.println("GOODBYE!");
+    }
 
 }

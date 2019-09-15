@@ -19,6 +19,10 @@
 
 package lab06;
 
+import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+
 public class Transaction {
 
     /** Number of items in the transaction */
@@ -27,13 +31,18 @@ public class Transaction {
     /** Transaction total */
     private double totalCost;
 
+    /** List of the price of every item in this transaction */
+    private ArrayList<Double> itemList;
+    /** Tracks summary stats over all prices in this transaction */
+    private DoubleSummaryStatistics dss;
+
+
     /**
-     * A new transaction will have 0 items and 0 totalCost (i.e a
-     * default constructor is sufficient.)
+     * A new transaction will have 0 items and 0 totalCost
      */
     public Transaction() {
-        this.numItems = 0;
-        this.totalCost = 0;
+        this.itemList = new ArrayList<>();
+        this.dss = new DoubleSummaryStatistics();
     }
 
     /**
@@ -42,8 +51,8 @@ public class Transaction {
      * @param price - price of the item
      */
     public void addItemToTransaction(double price) {
-        numItems += 1;
-        totalCost += price;
+        itemList.add(price);
+        dss.accept(price);
     }
 
     /**
@@ -52,39 +61,60 @@ public class Transaction {
      * @return a String for Transaction
      */
     public String toString() {
-        return "Transaction{numItems=" + numItems + ", transactionTotal =" + totalCost + "}";
+        return "Transaction{itemList=" + itemList.toString() + ",  dss=DoubleSummaryStatistics{count=" + getNumItems() +
+                ", sum=" + getTotalCost() + ", min=" + getMinCost() + ", avg=" + getAveCost() +", max=" + getMaxCost() + "}}";
+    }
+
+    /**
+     * Get the list of prices
+     *
+     * @return list of prices
+     */
+    public List<Double> getListOfPrices() {
+        return itemList;
     }
 
     /**
      * Get number of items
-     * @return int of num items
-     */
-    public int getNumItems() {
-        return numItems;
-    }
-
-    /**
-     * Set number of items
      *
-     * @param itemAdd number of added items
+     * @return number of items
      */
-    public void setNumItems(int itemAdd) {
-        numItems += itemAdd;
+    public long getNumItems() {
+        return this.dss.getCount();
     }
 
     /**
-     * Get the total cost
+     * Get total cost
      * @return total cost
      */
     public double getTotalCost() {
-        return totalCost;
+        return this.dss.getSum();
     }
 
     /**
-     * Set the total cost
-     * @param total the amount to set
+     * Get the lowest cost
+     *
+     * @return lowest cost
      */
-    public void setTotalCost(double total) {
-        totalCost = total;
+    public double getMinCost() {
+        return this.dss.getMin();
+    }
+
+    /**
+     * Get the highest cost
+     *
+     * @return highest cost
+     */
+    public double getMaxCost() {
+        return this.dss.getMax();
+    }
+
+    /**
+     * Get the average cost
+     *
+     * @return average cost
+     */
+    public double getAveCost() {
+        return this.dss.getAverage();
     }
 }
