@@ -54,7 +54,7 @@ public class CoinCollection {
      * @param count The number of coins to add of the specified type
      */
     public void addCoins(Coin coinType, int count) {
-        // TODO - FINISH THIS METHOD
+        coinCount[coinType.ordinal()] += count;
     }
 
     /**
@@ -66,8 +66,13 @@ public class CoinCollection {
      * remove more coins than we have, preventing negative coin amounts.
      */
     public int removeCoins(Coin coinType, int count) {
-        // TODO -- FINISH THIS METHOD!
-        return 0;
+        int numCoin = coinCount[coinType.ordinal()];
+        if (numCoin >= count) {
+            coinCount[coinType.ordinal()] -= count;
+            return count;
+        }
+        coinCount[coinType.ordinal()] = 0;
+        return numCoin;
     }
 
     /**
@@ -86,8 +91,22 @@ public class CoinCollection {
      * @return the total amount of the collection in dollars
      */
     public double getTotal() {
-        // TODO - FINISH THIS METHOD
-        return 0.0;
+        double total = 0;
+        for (int i = 0; i < coinCount.length; i++) {
+            total += coinCount[i] * coinValues[i];
+        }
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        Coin coins[] = Coin.values();
+        for (Coin c : coins) {
+            s += c.name() + ": " + coinCount[c.ordinal()] + " ";
+        }
+        s += "= $" + getTotal();
+        return s;
     }
 
     /**
