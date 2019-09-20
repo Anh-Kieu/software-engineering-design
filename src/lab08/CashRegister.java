@@ -137,6 +137,15 @@ public class CashRegister {
         return change;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        else {
+            return (totalTransaction == ((CashRegister) obj).getTransactionTotal() && paymentCollected == ((CashRegister) obj).getPaymentCollected() && listOfItemPrices.equals(((CashRegister) obj).getListOfPurchases()));
+        }
+    }
+
     public static void main(String[] args) {
         CashRegister myRegister = new CashRegister();
         myRegister.scanItem(0.55);

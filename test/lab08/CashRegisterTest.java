@@ -120,4 +120,19 @@ class CashRegisterTest {
         register.collectPayment(Money.DOLLAR, 1);
         assertThrows(CashRegister.ChangeException.class, () -> register.giveChange());
     }
+
+    @Test
+    void testEquals() {
+        CashRegister obj = new CashRegister();
+        assertEquals(obj, register);
+
+        register.scanItem(0.55);
+        register.scanItem(1.27);
+        register.collectPayment(Money.DOLLAR, 2);
+        assertNotEquals(obj, register);
+        obj.scanItem(0.55);
+        obj.scanItem(1.27);
+        obj.collectPayment(Money.DOLLAR, 2);
+        assertEquals(obj, register);
+    }
 }
