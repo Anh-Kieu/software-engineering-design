@@ -27,7 +27,7 @@ import java.util.Date;
 public class Employee {
 
     /** Our date formatter to ensure we have a common date */
-    private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd");
+    private static SimpleDateFormat emDateFormatter = new SimpleDateFormat("yyyy-MMM-dd");
 
     /** Employee id */
     private int empID;
@@ -134,7 +134,7 @@ public class Employee {
      * @throws ParseException if the string cannot be parse correctly.
      */
     public static Date parseHireDate(String sDate) throws ParseException {
-        return df.parse(sDate);
+        return emDateFormatter.parse(sDate);
     }
 
     /**
@@ -146,7 +146,7 @@ public class Employee {
     public String toString() {
         String s = this.empID + "," + this.lastName + "," + this.firstName;
         s += String.format(",%09d", this.ssNum);
-        s += "," + df.format(this.hireDate);
+        s += "," + emDateFormatter.format(this.hireDate);
         s += String.format(",%.2f", this.salary);
         return s;
     }
