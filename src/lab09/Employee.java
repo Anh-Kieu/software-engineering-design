@@ -2,10 +2,9 @@
  * CSCI205 - Software Engineering and Design
  * Fall 2019
  *
- * TODO - Enter the details below!
- * Name: TODO
- * Date: TODO
- * Time: TODO
+ * Name: Anh Kieu
+ * Date: 9/25/19
+ * Time: 9AM
  *
  * Project: csci205
  * Package: lab09
@@ -150,5 +149,20 @@ public class Employee {
         s += "," + df.format(this.hireDate);
         s += String.format(",%.2f", this.salary);
         return s;
+    }
+
+    /**
+     * Check if the objects are equal
+     *
+     * @param obj - obj to compare
+     * @return true if equal, otherwise false (only compare Employee ssNum)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || obj.getClass() != getClass() ) return false;
+        else {
+            return ssNum == ((Employee) obj).getSsNum();
+        }
     }
 }
