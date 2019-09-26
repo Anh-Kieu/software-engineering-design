@@ -18,6 +18,7 @@ package lab09;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 
 /**
  * A basic representation for an Employee to be stored in an HR database system
@@ -47,6 +48,9 @@ public class Employee {
     /** Current salary of the employee */
     private double salary;
 
+    /** Collection of unique Employee IDs generated/assigned */
+    private static HashSet<Integer> setofAssignedIDs = new HashSet<>();
+
     /**
      * Explicit constructor to create new employee
      *
@@ -58,7 +62,9 @@ public class Employee {
      * @param salary    Current employee salary
      */
     public Employee(int empID, String firstName, String lastName, int ssNum, Date hireDate, double salary) {
+        if (Employee.setofAssignedIDs.contains(empID) || empID <= 0) empID = generateID();
         this.empID = empID;
+        Employee.setofAssignedIDs.add(empID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssNum = ssNum;
@@ -122,6 +128,19 @@ public class Employee {
     public double raiseSalary(double salaryAdj) {
         this.salary += salaryAdj;
         return this.salary;
+    }
+
+    /**
+     * Generate new ID for employees
+     *
+     * @return new ID
+     */
+    private static Integer generateID() {
+        Integer element = 1;
+        while (Employee.setofAssignedIDs.contains(element)) {
+            element += 1;
+        }
+        return element;
     }
 
     /**

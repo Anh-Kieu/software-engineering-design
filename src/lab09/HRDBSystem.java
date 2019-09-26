@@ -26,21 +26,19 @@ import java.util.Date;
 public class HRDBSystem {
 
     public static void main(String[] args) throws ParseException {
-        // Create myself
-        Employee emp =  new Employee(0, "Anh", "Kieu", 123456789, new Date(), 60000);
-        System.out.println(emp);
 
-        // Give myself a raise
-        emp.raiseSalary(10000);
-        System.out.println(emp);
-
-        // Correct name
-        emp.changeName("Meh", "Maid");
-        System.out.println(emp);
-
-        Manager mgrDean = new Manager(1, "Pat", "Mather",
-                987654321, Employee.strToDate("2015-07-01"), 174000, "ENGINEERING");
+        Manager mgrDean = new Manager(0, "Pat", "Mather",
+                101010101, Employee.strToDate("2015-07-01"), 174000, "ENGINEERING");
         System.out.println(mgrDean);
+
+        Employee emp =  new Employee(1, "Brian", "King", 123456789, Employee.strToDate("2015-08-20"), 60000);
+        System.out.println(emp);
+
+        Employee emp1 =  new Employee(10, "Robert", "Randolph", 121212121, Employee.strToDate("2015-12-01"), 75000);
+        System.out.println(emp1);
+
+        Employee emp2 =  new Employee(2, "Jimi", "Hendrix", 000000001, new Date(), 70000);
+        System.out.println(emp2);
 
     }
 }
