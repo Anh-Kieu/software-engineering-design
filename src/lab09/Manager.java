@@ -23,6 +23,7 @@ public class Manager extends Employee {
     /** Department of manager */
     private String deptName;
 
+
     /**
      * A
      * @param empID Employee ID
@@ -38,9 +39,31 @@ public class Manager extends Employee {
         this.deptName = deptName;
     }
 
+    /**
+     * Get the department name
+     *
+     * @return the name of the department
+     */
+    public String getDeptName() {
+        return deptName;
+    }
+
+    /**
+     * Set department name
+     * @param deptName
+     */
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    /**
+     * Represent manager object in String
+     *
+     * @return String representation of Manager
+     */
     @Override
     public String toString() {
-        return super.toString() + ", MANAGER, " + deptName;
+        return super.toString() + ", MANAGER, " + getDeptName();
     }
 }
 

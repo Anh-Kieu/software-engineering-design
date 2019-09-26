@@ -39,7 +39,7 @@ public class HRDBSystem {
         System.out.println(emp);
 
         Manager mgrDean = new Manager(1, "Pat", "Mather",
-                987654321, Employee.parseHireDate("2015-Jan-01"), 174000, "ENGINEERING");
+                987654321, Employee.strToDate("2015-07-01"), 174000, "ENGINEERING");
         System.out.println(mgrDean);
 
     }
