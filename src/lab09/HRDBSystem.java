@@ -28,13 +28,13 @@ public class HRDBSystem {
     public static void main(String[] args) throws ParseException {
 
         Manager mgrDean = new Manager(0, "Pat", "Mather",
-                101010101, Employee.strToDate("2015-07-01"), 174000, "ENGINEERING");
+                101010101, HRDateUtils.strToDate("2015-07-01"), 174000, "ENGINEERING");
         System.out.println(mgrDean);
 
-        Employee emp =  new Employee(1, "Brian", "King", 123456789, Employee.strToDate("2015-08-20"), 60000);
+        Employee emp =  new Employee(1, "Brian", "King", 123456789, HRDateUtils.strToDate("2015-08-20"), 60000);
         System.out.println(emp);
 
-        Employee emp1 =  new Employee(10, "Robert", "Randolph", 121212121, Employee.strToDate("2015-12-01"), 75000);
+        Employee emp1 =  new Employee(10, "Robert", "Randolph", 121212121, HRDateUtils.strToDate("2015-12-01"), 75000);
         System.out.println(emp1);
 
         Employee emp2 =  new Employee(2, "Jimi", "Hendrix", 000000001, new Date(), 70000);

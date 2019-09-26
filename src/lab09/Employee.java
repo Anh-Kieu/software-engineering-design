@@ -15,8 +15,6 @@
  */
 package lab09;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -27,8 +25,33 @@ import java.util.HashSet;
  */
 public class Employee {
 
-    /** Our date formatter to ensure we have a common date */
-    private static SimpleDateFormat empDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    /**
+     * A factory to generate unique IDs in a safe way
+     */
+    private static class IDFactory {
+
+        /** Collection of unique Employee IDs generated/assigned */
+        private static HashSet<Integer> setofAssignedIDs = new HashSet<>();
+
+        /**
+         * Generate new ID for employees
+         *
+         * @return new ID
+         */
+        private static Integer generateID() {
+            Integer element = 1;
+            while (setofAssignedIDs.contains(element)) {
+                element += 1;
+            }
+            return element;
+        }
+
+        private static Integer safeToUse(Integer id) {
+            if (setofAssignedIDs.contains(id) || id <= 0) id = generateID();
+            setofAssignedIDs.add(id);
+            return id;
+        }
+    }
 
     /** Employee id */
     private int empID;
@@ -48,9 +71,6 @@ public class Employee {
     /** Current salary of the employee */
     private double salary;
 
-    /** Collection of unique Employee IDs generated/assigned */
-    private static HashSet<Integer> setofAssignedIDs = new HashSet<>();
-
     /**
      * Explicit constructor to create new employee
      *
@@ -62,9 +82,8 @@ public class Employee {
      * @param salary    Current employee salary
      */
     public Employee(int empID, String firstName, String lastName, int ssNum, Date hireDate, double salary) {
-        if (Employee.setofAssignedIDs.contains(empID) || empID <= 0) empID = generateID();
-        this.empID = empID;
-        Employee.setofAssignedIDs.add(empID);
+        this.empID = IDFactory.safeToUse(empID);
+        IDFactory.setofAssignedIDs.add(empID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssNum = ssNum;
@@ -131,42 +150,6 @@ public class Employee {
     }
 
     /**
-     * Generate new ID for employees
-     *
-     * @return new ID
-     */
-    private static Integer generateID() {
-        Integer element = 1;
-        while (Employee.setofAssignedIDs.contains(element)) {
-            element += 1;
-        }
-        return element;
-    }
-
-    /**
-     * Helper method to parse a date string into a date object. This is
-     * really here just to show how to deal with an exception that may
-     * be thrown in a method.
-     *
-     * @param sDate - a date string
-     * @return a <code>Date</code> object
-     * @throws ParseException if the string cannot be parse correctly.
-     */
-    public static Date strToDate(String sDate) throws ParseException {
-        return empDateFormatter.parse(sDate);
-    }
-
-    /**
-     * Helper method to parse a date into a string.
-     *
-     * @param dString - the Date
-     * @return String representing date
-     */
-    public static String dateToStr(Date dString) {
-        return empDateFormatter.format(dString);
-    }
-
-    /**
      * Return a string representation of the Employee
      *
      * @return the String of comma delimited values
@@ -175,7 +158,7 @@ public class Employee {
     public String toString() {
         String s = this.empID + "," + this.lastName + "," + this.firstName;
         s += String.format(",%09d", this.ssNum);
-        s += "," + dateToStr(this.hireDate);
+        s += "," + HRDateUtils.dateToStr(this.hireDate);
         s += String.format(",%.2f", this.salary);
         return s;
     }
