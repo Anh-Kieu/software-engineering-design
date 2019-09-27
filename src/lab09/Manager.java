@@ -100,11 +100,10 @@ public class Manager extends Employee {
     }
 
     public void removeEmployee(Employee e) throws ManagerException {
-        try {
-            empList.remove(e);
-        } catch (Exception ex){
+        if (!empList.contains(e)){
             throw new ManagerException("Employee does not exist");
         }
+        empList.remove(e);
     }
 
     /**

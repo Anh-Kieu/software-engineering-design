@@ -1,7 +1,9 @@
 package lab09;
 
+import lab08.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -14,8 +16,8 @@ class EmployeeTest {
 
     @BeforeEach
     void setUp() throws ParseException {
-        emp = new Manager(0, "Pat", "Mather",
-                101010101, HRDateUtils.strToDate("2015-07-01"), 174000, "ENGINEERING");
+        emp = new Employee(0, "Pat", "Mather",
+                101010101, HRDateUtils.strToDate("2015-07-01"), 174000);
     }
 
     @AfterEach
@@ -46,9 +48,10 @@ class EmployeeTest {
 
         assertNotEquals(emp, test);
 
-        test = new Manager(0, "Pat", "Mather",
-                101010101, HRDateUtils.strToDate("2015-07-01"), 174000, "ENGINEERING");
+        test = new Employee(0, "Pat", "Mather",
+                101010101, HRDateUtils.strToDate("2015-07-01"), 174000);
 
         assertEquals(emp, test);
     }
+
 }
