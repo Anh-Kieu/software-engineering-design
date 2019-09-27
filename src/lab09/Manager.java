@@ -16,13 +16,51 @@
 
 package lab09;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Manager extends Employee {
 
-    /** Department of manager */
-    private String deptName;
+    /**
+     *  Enumeration for department
+     */
+    enum DepartmentName {
+        ENGINEERING,
+        HR,
+        ADMIN,
+        STAFF,
+        OTHER;
+    }
 
+    /**
+     * Checked exception representing any issues that might arise from the Manager class
+     */
+    class ManagerException extends Exception{
+        public ManagerException(String message) { super(message); }
+    }
+
+    /** Department of manager */
+    private DepartmentName deptName;
+
+    /** List of employee */
+    private List<Employee> empList = new ArrayList<>();
+
+    /**
+     * A
+     * @param empID Employee ID
+     * @param firstName First name of the employee
+     * @param lastName Last name of the employee
+     * @param ssNum SS of the employee
+     * @param hireDate the date of hiring
+     * @param salary the salary of employee
+     * @param deptName {@link DepartmentName} department the manager is in charge of
+     */
+    public Manager(int empID, String firstName, String lastName, int ssNum, Date hireDate, double salary, DepartmentName deptName) {
+        super(empID, firstName, lastName, ssNum, hireDate, salary);
+        this.deptName = deptName;
+        this.empList = empList;
+    }
 
     /**
      * A
@@ -34,9 +72,39 @@ public class Manager extends Employee {
      * @param salary the salary of employee
      * @param deptName department the manager is in charge of
      */
-    public Manager(int empID, String firstName, String lastName, int ssNum, Date hireDate, double salary, String deptName) {
+    public Manager(int empID, String firstName, String lastName, int ssNum, Date hireDate, double salary, String deptName) throws ManagerException {
         super(empID, firstName, lastName, ssNum, hireDate, salary);
-        this.deptName = deptName;
+        try {
+            this.deptName = DepartmentName.valueOf(deptName);
+        } catch (IllegalArgumentException e) {
+            throw new ManagerException("Invalid deptName: " + deptName);
+        }
+    }
+
+    /**
+     * Add employee to the manager's employee list
+     * @param e
+     */
+    public void addEmployee(Employee e) throws ManagerException {
+        if (empList.contains(e)) throw new ManagerException("Employee is already in the list");
+        empList.add(e);
+    }
+
+    /**
+     * Get the list of employee
+     *
+     * @return
+     */
+    public List<Employee> getEmpList() {
+        return empList;
+    }
+
+    public void removeEmployee(Employee e) throws ManagerException {
+        try {
+            empList.remove(e);
+        } catch (Exception ex){
+            throw new ManagerException("Employee does not exist");
+        }
     }
 
     /**
@@ -44,7 +112,7 @@ public class Manager extends Employee {
      *
      * @return the name of the department
      */
-    public String getDeptName() {
+    public DepartmentName getDeptName() {
         return deptName;
     }
 
@@ -52,7 +120,7 @@ public class Manager extends Employee {
      * Set department name
      * @param deptName
      */
-    public void setDeptName(String deptName) {
+    public void setDeptName(DepartmentName deptName) {
         this.deptName = deptName;
     }
 
