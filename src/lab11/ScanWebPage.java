@@ -79,7 +79,6 @@ public class ScanWebPage {
         // Handling output file
         HandlingOutputFile(scan, link, tag);
 
-
     }
 
     /**
@@ -92,31 +91,58 @@ public class ScanWebPage {
      */
     public static void HandlingOutputFile(Scanner scan, Scanner link, String tag) throws FileNotFoundException {
         System.out.print("Enter the output file name, or press ENTER to print to the screen: ");
-        String filename = scan.next();
+        String filename = scan.nextLine();
         if (!tag.equals("")) {
             PrintOneTagOutput(link, tag, filename);
             System.out.println("Goodbye!");
         } else {
-            Map<String, Integer> tags = new HashMap<>();
-            Pattern pattern = Pattern.compile("<\\w+>|<\\w+\\s+[^/>]*>");
-            String sMatch;
-            while(true) {
-                if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
-                String tagName = sMatch.replaceAll("<[^>]*>", "");
-                if (tags.containsKey(tagName)) {
-                    int prevCount = tags.get(tagName);
-                    tags.put(tagName, prevCount + 1);
-                } else {
-                    tags.put(tagName, 1);
-                }
+            PrintAllTag(link, filename);
+        }
+    }
+
+    private static void PrintAllTag(Scanner link, String filename) throws FileNotFoundException {
+        Map<String, Integer> tags = new HashMap<>();
+        Pattern pattern = Pattern.compile("<(\\w+)");
+        String sMatch;
+        while(true) {
+            if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
+            String tagName = sMatch.replaceAll("<", "");
+            if (tags.containsKey(tagName)) {
+                int prevCount = tags.get(tagName);
+                tags.put(tagName, prevCount + 1);
+            } else {
+                tags.put(tagName, 1);
             }
+        }
+        //sorted list
+        List sortedTags = new ArrayList(tags.keySet());
+        List sortFreq = new ArrayList(tags.keySet());
+        Collections.sort(sortedTags);
+        Collections.sort(sortFreq, (obj1, obj2) -> tags.get(obj2).compareTo(tags.get(obj1)));
+        if (filename.equals("")) {
             // sort by name
-            List sortedKeys = new ArrayList(tags.keySet());
-            Collections.sort(sortedKeys);
-            for (Object name : sortedKeys) {
+
+            for (Object name : sortedTags) {
                 System.out.println(name + ": " + tags.get(name));
             }
+            System.out.println("---------------");
             // sort by freq
+
+            for (Object name : sortFreq) {
+                System.out.println(name + ": " + tags.get(name));
+            }
+        } else {
+            PrintWriter out = new PrintWriter((filename));
+            // sort by name
+            for (Object name : sortedTags) {
+                out.println(name + ": " + tags.get(name));
+            }
+            out.println("---------------");
+            // sort by freq
+            for (Object name : sortFreq) {
+                out.println(name + ": " + tags.get(name));
+            }
+            out.close();
         }
     }
 
@@ -133,7 +159,7 @@ public class ScanWebPage {
             PrintWriter out = new PrintWriter(filename);
             String sMatch;
             int count = 0;
-            Pattern pattern = Pattern.compile("<" + tag + ">" + "|" + tag + "\\s+(\\w+)=\"([^\"]+)\"");
+            Pattern pattern = Pattern.compile("<" + tag);
             while (true) {
                 if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
                 out.printf("Found: %s\n", sMatch);
@@ -146,15 +172,13 @@ public class ScanWebPage {
         } else {
             String sMatch;
             int count = 0;
-            Pattern pattern = Pattern.compile("<" + tag + ">" + "|" + tag + "\\s+(\\w+)=\"([^\"]+)\"");
+            Pattern pattern = Pattern.compile("<" + tag);
             while (true) {
                 if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
                 System.out.printf("Found: %s\n", sMatch);
-                MatchResult match = link.match();
-                System.out.println("Parameter: " + match.group(1));
-                System.out.println("Value: " + match.group(2));
                 count++;
             }
+            System.out.printf("Wrote %d %s tags to screen\n", count, tag);
         }
     }
 
@@ -166,7 +190,7 @@ public class ScanWebPage {
      */
     private static String ScanTag(Scanner scan) {
         System.out.println("Enter a HTML tag to scan for: ");
-        String tag = scan.next();
+        String tag = scan.nextLine();
         return tag;
     }
 
@@ -182,7 +206,7 @@ public class ScanWebPage {
         // scan user input
         while (invalid) {
             System.out.print("Enter your link here: ");
-            String address = scan.next();
+            String address = scan.nextLine();
             link = Validate(address);
             if (link != null) invalid = false;
         }
