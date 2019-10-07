@@ -25,7 +25,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -93,7 +93,43 @@ public class ScanWebPage {
     public static void HandlingOutputFile(Scanner scan, Scanner link, String tag) throws FileNotFoundException {
         System.out.print("Enter the output file name, or press ENTER to print to the screen: ");
         String filename = scan.next();
-        if (filename != null) {
+        if (!tag.equals("")) {
+            PrintOneTagOutput(link, tag, filename);
+            System.out.println("Goodbye!");
+        } else {
+            Map<String, Integer> tags = new HashMap<>();
+            Pattern pattern = Pattern.compile("<\\w+>|<\\w+\\s+[^/>]*>");
+            String sMatch;
+            while(true) {
+                if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
+                String tagName = sMatch.replaceAll("<[^>]*>", "");
+                if (tags.containsKey(tagName)) {
+                    int prevCount = tags.get(tagName);
+                    tags.put(tagName, prevCount + 1);
+                } else {
+                    tags.put(tagName, 1);
+                }
+            }
+            // sort by name
+            List sortedKeys = new ArrayList(tags.keySet());
+            Collections.sort(sortedKeys);
+            for (Object name : sortedKeys) {
+                System.out.println(name + ": " + tags.get(name));
+            }
+            // sort by freq
+        }
+    }
+
+    /**
+     * Write to file or screen the output of finding a specific tag
+     *
+     * @param link address link
+     * @param tag tag to find
+     * @param filename name of the file (could be null, that means print to screen)
+     * @throws FileNotFoundException
+     */
+    private static void PrintOneTagOutput(Scanner link, String tag, String filename) throws FileNotFoundException {
+        if (!filename.equals("")) {
             PrintWriter out = new PrintWriter(filename);
             String sMatch;
             int count = 0;
@@ -102,8 +138,6 @@ public class ScanWebPage {
                 if ((sMatch = link.findWithinHorizon(pattern, 0)) == null) break;
                 out.printf("Found: %s\n", sMatch);
                 MatchResult match = link.match();
-                out.println("Parameter: " + match.group(1));
-                out.println("Value: " + match.group(2));
                 count++;
             }
             out.println(count);
@@ -122,7 +156,6 @@ public class ScanWebPage {
                 count++;
             }
         }
-        System.out.println("Goodbye!");
     }
 
     /**
