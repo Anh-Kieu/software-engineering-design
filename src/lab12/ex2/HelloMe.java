@@ -66,6 +66,10 @@ public class HelloMe extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Add shadow to the text
+     * @param root - big view
+     */
     private void addShadow(VBox root) {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setOffsetX(3);
@@ -80,6 +84,10 @@ public class HelloMe extends Application {
         });
     }
 
+    /**
+     * Add text
+     * @param root - big view
+     */
     private void addText(VBox root) {
         textNameOutput = new Text();
         textNameOutput.setFont(Font.font(null, FontWeight.BOLD, 30));
@@ -88,6 +96,10 @@ public class HelloMe extends Application {
         root.getChildren().add(textNameOutput);
     }
 
+    /**
+     * Add button for getting text input
+     * @param root - big view
+     */
     private void addButton(VBox root) {
         btn = new Button("Show my name!");
         root.getChildren().add(btn);
