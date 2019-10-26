@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Fall 2019
+ * Instructor: Prof. Brian King
+ *
+ * Name: Anh Kieu
+ * Section: 9am
+ * Date: 10/26/2019
+ * Time: 6:05 PM
+ *
+ * Project: csci205_labs
+ * Package: lab12
+ * Class: HelloMain
+ *
+ * Description: Testing JavaFX
+ *
+ * ****************************************
+ */
+
 package lab12.ex1;
 
 import javafx.application.Application;
@@ -6,7 +25,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.Date;
 
 public class HelloMain extends Application {
