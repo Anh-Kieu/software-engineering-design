@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Fall 2019
+ * Instructor: Prof. Brian King
+ *
+ * Name: Anh Kieu
+ * Section: 9am
+ * Date: 10/26/2019
+ * Time: 6:05 PM
+ *
+ * Project: csci205_labs
+ * Package: lab12
+ * Class: TempConverterView
+ *
+ * Description: TempConverter GUI - View
+ *
+ * ****************************************
+ */
+
 package lab12.tempconvertermvc;
 
 import javafx.geometry.Insets;
@@ -10,31 +29,55 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The view of the GUI
+ */
 public class TempConverterView {
 
     // All attributes to be used in main
+    /** The root pane */
     private final BorderPane root;
+    /** Text input field for user input */
     private final TextField textFieldTempInput;
+    /** Confirm button */
     private final Button btn;
+    /** Result text */
     private final Text resultText;
+    /** Toggle group of radio button */
     private final ToggleGroup toggleGroup;
+    /** Radio button for FtoC */
+    private final RadioButton bFtoC;
+    /** Radio button for CtoF */
+    private final RadioButton bCtoF;
+    /** Label for temperature unit */
+    private final Label lblUnits;
 
+
+    /**
+     * Get the unit of the temperature
+     * @return unit of temperature
+     */
     public Label getLblUnits() {
         return lblUnits;
     }
 
-    private final Label lblUnits;
-
+    /**
+     * Get the radio button for FtoC
+     * @return rb for FtoC
+     */
     public RadioButton getRB1() {
         return bFtoC;
     }
 
+    /**
+     * Get the radio button for CtoF
+     * @return rb for CtoF
+     */
     public RadioButton getRB2() {
         return bCtoF;
     }
 
-    private final RadioButton bFtoC;
-    private final RadioButton bCtoF;
+
 
     /**
      * Get the root

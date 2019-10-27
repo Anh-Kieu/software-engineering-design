@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Fall 2019
+ * Instructor: Prof. Brian King
+ *
+ * Name: Anh Kieu
+ * Section: 9am
+ * Date: 10/26/2019
+ * Time: 6:05 PM
+ *
+ * Project: csci205_labs
+ * Package: lab12
+ * Class: TempConverterMain
+ *
+ * Description: TempConverter GUI - Main
+ *
+ * ****************************************
+ */
+
 package lab12.tempconvertermvc;
 
 import javafx.application.Application;
@@ -15,6 +34,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+/**
+ * Main app to run GUI for tempconverter
+ */
 public class TempConverterMain extends Application {
 
     TempConverterView theView;

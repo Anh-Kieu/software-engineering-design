@@ -19,7 +19,6 @@
 
 package lab12.ex3;
 
-
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;

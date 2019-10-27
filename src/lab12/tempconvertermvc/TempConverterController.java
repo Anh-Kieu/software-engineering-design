@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Fall 2019
+ * Instructor: Prof. Brian King
+ *
+ * Name: Anh Kieu
+ * Section: 9am
+ * Date: 10/26/2019
+ * Time: 6:05 PM
+ *
+ * Project: csci205_labs
+ * Package: lab12
+ * Class: TempConverterController
+ *
+ * Description: TempConverter GUI - Controller
+ *
+ * ****************************************
+ */
+
 package lab12.tempconvertermvc;
 
 import javafx.beans.binding.Bindings;
@@ -7,6 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+/**
+ * Class for GUI controller
+ */
 public class TempConverterController {
 
     TempConverterView view;

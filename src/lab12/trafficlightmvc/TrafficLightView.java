@@ -1,3 +1,22 @@
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Fall 2019
+ * Instructor: Prof. Brian King
+ *
+ * Name: Anh Kieu
+ * Section: 9am
+ * Date: 10/26/2019
+ * Time: 6:05 PM
+ *
+ * Project: csci205_labs
+ * Package: lab12
+ * Class: TrafficLightView
+ *
+ * Description: Traffic Light GUI - View
+ *
+ * ****************************************
+ */
+
 package lab12.trafficlightmvc;
 
 import javafx.geometry.Insets;
@@ -8,27 +27,48 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class for TL GUI view
+ */
 public class TrafficLightView {
 
+    /** the model of GUI */
     private TrafficLightModel theModel;
+    /** the root node */
     private VBox root;
+    /** checkbox prompting auto off */
     private CheckBox checkboxAutoOff;
+    /** Array of circles representing lights */
+    private ArrayList<Circle> lights;
 
+    /**
+     * Get the root pane
+     * @return root
+     */
     public VBox getRoot() {
         return root;
     }
 
+    /**
+     * Get the checkbox box
+     * @return checkbox
+     */
     public CheckBox getCheckboxAutoOff() {
         return checkboxAutoOff;
     }
 
+    /**
+     * Get the circles that represent lights
+     * @return ArrayList of Circle
+     */
     public ArrayList<Circle> getLights() {
         return lights;
     }
 
-    private ArrayList<Circle> lights;
-
+    /**
+     * The view for GUI
+     * @param model - GUI model
+     */
     public TrafficLightView(TrafficLightModel model) {
         this.theModel = model;
 
